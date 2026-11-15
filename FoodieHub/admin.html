@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Menu | FoodieHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-page">
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">f</span><span>foodie<span class="brand-orange">hub.</span></span></a>
+    <div class="admin-header-links">
+      <button class="logout-btn hidden" id="logoutBtn" type="button">Logout</button>
+      <a class="back-link" href="index.html">← Back to website</a>
+    </div>
+  </header>
+
+  <section class="admin-login-wrap" id="adminLoginWrap">
+    <div class="admin-login-card">
+      <div class="login-lock">🔒</div>
+      <div class="eyebrow">RESTRICTED ACCESS</div>
+      <h2>Admin Login</h2>
+      <p>Enter your Admin User ID and Password to manage the menu.</p>
+      <form id="adminLoginForm">
+        <label>User ID<input id="adminUserId" type="text" required autocomplete="username" placeholder="Enter User ID"></label>
+        <label>Password<input id="adminPassword" type="password" required autocomplete="current-password" placeholder="Enter Password"></label>
+        <p class="login-error" id="loginError" aria-live="polite"></p>
+        <button class="primary-btn login-submit-btn" type="submit">Unlock Manage Menu <span>→</span></button>
+      </form>
+    </div>
+  </section>
+
+  <main class="admin-main hidden" id="adminMain">
+    <div class="admin-top"><div><div class="eyebrow">FOODIEHUB CONTROL PANEL</div><h1>Manage your menu</h1><p>Add your own dishes, set any price and update your menu whenever you want.</p></div><span class="admin-pill">● Menu manager</span></div>
+    <div class="admin-layout">
+      <section class="admin-form-card">
+        <div class="form-title"><div><span class="eyebrow" id="formEyebrow">NEW MENU ITEM</span><h2 id="formTitle">Add a food item</h2></div><span class="form-icon">＋</span></div>
+        <form id="foodForm">
+          <input type="hidden" id="foodId">
+          <label>Food name *<input id="foodName" required maxlength="60" placeholder="e.g. Chicken Biryani"></label>
+          <div class="form-two">
+            <label>Price (₹) *<input id="foodPrice" required type="number" min="1" step="1" placeholder="e.g. 180"></label>
+            <label>Category *<input id="foodCategory" required list="categoryOptions" maxlength="30" placeholder="e.g. Bengali"></label>
+            <datalist id="categoryOptions"></datalist>
+          </div>
+          <label>Food image URL<input id="foodImage" type="url" placeholder="Paste an image link (https://...)"></label>
+          <label>Or upload an image<input id="foodImageFile" type="file" accept="image/*"><small class="field-hint">Image upload is saved in this browser. Use a reasonably small image file.</small></label>
+          <div class="image-preview" id="imagePreview"><span>🍽️</span><small>Image preview</small></div>
+          <label>Short description<textarea id="foodDesc" rows="3" maxlength="120" placeholder="Describe your dish..."></textarea></label>
+          <div class="form-two">
+            <label>Preparation time<input id="foodTime" maxlength="20" placeholder="20-25 min"></label>
+            <label>Badge / Tag<input id="foodTag" maxlength="24" placeholder="Bestseller"></label>
+          </div>
+          <div class="form-actions"><button class="primary-btn" type="submit" id="saveFoodBtn">Add food item <span>→</span></button><button class="cancel-btn hidden" type="button" id="cancelEdit">Cancel edit</button></div>
+          <p class="admin-message" id="adminMessage" aria-live="polite"></p>
+        </form>
+      </section>
+      <section class="admin-list-card">
+        <div class="list-heading"><div><span class="eyebrow">YOUR CURRENT MENU</span><h2>Food items <span id="itemCount">0</span></h2></div><button class="reset-btn" id="restoreDefaults" type="button">Restore sample menu</button></div>
+        <p class="list-note">Changes appear on the customer website automatically in this same browser.</p>
+        <div class="admin-food-list" id="adminFoodList"></div>
+      </section>
+    </div>
+    <div class="admin-warning"><b>Important:</b> This is a frontend-only college demo. Menu changes are stored in this browser's LocalStorage, not on a shared online server. For a real public website, we would need a backend and database.</div>
+  </main>
+  <script src="admin.js"></script>
+</body>
+</html>
